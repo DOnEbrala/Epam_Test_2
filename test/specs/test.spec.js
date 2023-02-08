@@ -1,5 +1,5 @@
 const condition = require('../../pom/firstTask');
-
+const check = require('../../pom/firstTaskCheck')
 
 describe("Test suite", () => {
 
@@ -9,20 +9,13 @@ describe("Test suite", () => {
         await condition.GoogleCalculatorPage.click();
         await expect(browser).toHaveTitleContaining("Google Cloud Pricing Calculator");
 
-        const frame = await browser.findElement('xpath','//*[@id="cloud-site"]/devsite-iframe/iframe')
-        // await expect(hello).toExist();
-        await browser.switchToFrame(frame)
-
-        await condition.ragaca.click();
-        await condition.ragaca2.click();
-
-        await condition.GoogleNumberOfInstancesInput.waitUntil(async function (){
-            await condition.GoogleNumberOfInstancesInput.click()
-            return await condition.GoogleNumberOfInstancesInput.setValue("hello");
-
-        }, {timeout: 10000});
-        // await condition.GoogleNumberOfInstancesInput.setValue("Hello");
-        browser.switchToParentFrame();
+        await condition.goToCalculatorFrame();
+        await condition.CalculatorInputs();
     });
+
+    it("Hurt Me Plenty Check", async () => {
+        await check.CheckCondition();
+        await browser.switchToParentFrame();
+    })
 
 });
