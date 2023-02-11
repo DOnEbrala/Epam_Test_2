@@ -1,14 +1,14 @@
 const Page = require('./page');
 
 
-class Condition extends Page {
-    get GoogleSearchInput(){
+class ConditionPage extends Page {
+    get googleSearchInput(){
         return $('//input[@class = "devsite-search-field devsite-search-query"]')
     }
-    get GoogleCalculatorPage(){
+    get googleCalculatorPage(){
         return $('//a[@data-ctorig = "https://cloud.google.com/products/calculator"]')
     }
-    get GoogleCalculatorPageTitle(){
+    get googleCalculatorPageTitle(){
         return $('//h2["Google Cloud Pricing Calculator"]');
     }
     get firstFrame() {
@@ -24,103 +24,166 @@ class Condition extends Page {
         await this.secondFrame.waitForDisplayed();
         await browser.switchToFrame(await this.secondFrame);
       }
-    get FirstNumberInput(){
+      
+    get firstNumberInput(){
       return $('#input_92')
     }
-    get SeriesDropDownMenuLabel(){
+    get seriesDropDownMenuLabel(){
       return $('#select_value_label_87')
     }
-    get SeriesDropDownMenuOption(){
+    get seriesDropDownMenuOption(){
       return $('//div[contains (text(), "N1")]');
     }
-    get ComputerOptionDropDownMenu(){
+    get computerOptionDropDownMenu(){
       return $('#select_value_label_88');
     }
-    get ComputerOptionDropDownMenuOption(){
+    get computerOptionDropDownMenuOption(){
       return $('//div[contains (text(), "n1-standard-8 (vCPUs: 8, RAM: 30GB")]')
     }
-    get CheckBoxGpu(){
+    get checkBoxGpu(){
       return $('//div[contains (text(), "Add GPUs.")][1]')
     }
-    get GpuSelectDropDown(){
+    get gpuSelectDropDown(){
       return $('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[14]/div/div[1]/div[1]/md-input-container[1]')
       
     }
-    get GpuSelectDropDownOption(){
+    get gpuSelectDropDownOption(){
       return $('//div[contains (text(), "NVIDIA Tesla V100")][1]')
     }
-    get GpuNumberDropDownMenu(){
+    get gpuNumberDropDownMenu(){
       return $('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[14]/div/div[1]/div[1]/md-input-container[2]')
     }
-    get GpuNumberDropDownMenuOption(){
+    get gpuNumberDropDownMenuOption(){
       return $('/html/body/div[6]/md-select-menu/md-content/md-option[2]/div')
     }
-    get SsdNodesContainerDropDown(){
+    get ssdNodesContainerDropDown(){
       return $('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[15]/div[1]/md-input-container')
     }
-    get SsdNodesContainerDropDownOption(){
+    get ssdNodesContainerDropDownOption(){
       return $('//div[contains(text(), "2x375 GB")]')
     }
-    get LocationServerDropDown(){
+    get locationServerDropDown(){
       return $('/html/body/md-content/md-card/div/md-card-content[1]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[16]/div[1]/md-input-container')
     }
-    get LocationServerDropDownOption(){
+    get locationServerDropDownOption(){
       return $('//*[@id="select_option_230"]')
     }
-    get CommittedUsageTimeDropDown(){
+    get committedUsageTimeDropDown(){
       return $('//*[@id="select_132"]')
     }
-    get CommittedUsageTimeDropDownOption(){
+    get committedUsageTimeDropDownOption(){
       return $('//*[@id="select_option_130"]/div[1]')
     }
-    get EstimateButton(){
+    get estimateButton(){
       return $('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[20]/button')
     }
 
-    async CalculatorInputs(){
-      await this.FirstNumberInput.click()
-      await this.FirstNumberInput.setValue(4);
+    async calculatorInputs(){
+      await this.firstNumberInput.click()
+      await this.firstNumberInput.setValue(4);
       
-      await this.SeriesDropDownMenuLabel.click()
-      await this.SeriesDropDownMenuOption.click()
+      await this.seriesDropDownMenuLabel.click()
+      await this.seriesDropDownMenuOption.waitForDisplayed(2000)
+      await this.seriesDropDownMenuOption.click()
       
-      await this.ComputerOptionDropDownMenu.click();
-      await this.ComputerOptionDropDownMenuOption.waitForExist(2000);
-      await this.ComputerOptionDropDownMenuOption.click();
+      await this.computerOptionDropDownMenu.click();
+      await this.computerOptionDropDownMenuOption.waitForExist(2000);
+      await this.computerOptionDropDownMenuOption.click();
 
-      await this.CheckBoxGpu.click();
-      await this.GpuSelectDropDown.waitForDisplayed(2000);
-      await this.GpuNumberDropDownMenu.waitForDisplayed(2000);
+      await this.checkBoxGpu.click();
+      await this.gpuSelectDropDown.waitForDisplayed(2000);
+      await this.gpuNumberDropDownMenu.waitForDisplayed(2000);
 
-      await this.GpuSelectDropDown.click();
-      await this.GpuSelectDropDownOption.waitForDisplayed(2000);
-      await this.GpuSelectDropDownOption.click();
+      await this.gpuSelectDropDown.click();
+      await this.gpuSelectDropDownOption.waitForDisplayed(2000);
+      await this.gpuSelectDropDownOption.click();
 
-      await this.GpuNumberDropDownMenu.click();
-      await this.GpuNumberDropDownMenuOption.waitForDisplayed(2000);
-      await this.GpuNumberDropDownMenuOption.click();
+      await this.gpuNumberDropDownMenu.click();
+      await this.gpuNumberDropDownMenuOption.waitForDisplayed(2000);
+      await this.gpuNumberDropDownMenuOption.click();
 
-      await this.SsdNodesContainerDropDown.click();
-      await this.SsdNodesContainerDropDownOption.waitForDisplayed(2000);
-      await this.SsdNodesContainerDropDownOption.click();
+      await this.ssdNodesContainerDropDown.click();
+      await this.ssdNodesContainerDropDownOption.waitForDisplayed(2000);
+      await this.ssdNodesContainerDropDownOption.click();
 
-      await this.LocationServerDropDown.click();
-      await this.LocationServerDropDownOption.waitForDisplayed(2000);
-      await this.LocationServerDropDownOption.click();
+      await this.locationServerDropDown.click();
+      await this.locationServerDropDownOption.waitForDisplayed(2000);
+      await this.locationServerDropDownOption.click();
 
-      await this.CommittedUsageTimeDropDown.click();
-      await this.CommittedUsageTimeDropDownOption.waitForDisplayed(2000);
-      await this.CommittedUsageTimeDropDownOption.click();
+      await this.committedUsageTimeDropDown.click();
+      await this.committedUsageTimeDropDownOption.waitForDisplayed(2000);
+      await this.committedUsageTimeDropDownOption.click();
 
-      // await this.EstimateButton.scrollIntoView();
-      await this.EstimateButton.click();
-
-
-
+      // await this.estimateButton.scrollIntoView();
+      await this.estimateButton.click();
 
     }
+
+    get newMailAdressInput () {
+      return $('//div[@id="email_id"]')
+     }
+    get copyButton (){
+      return $('//div[@id = "btn_copy"]')
+    }
+    get emailButton(){
+      return $('/html/body/md-content/md-card/div/md-card-content[2]/md-card/md-card-content/div/div/div/div[3]/button[2]')
+    }
+    get formWindow(){
+      return $('body > div.md-dialog-container.ng-scope')
+    }
+    get emailInput(){
+      return $('//label[contains (text(), "Email")]/..//input')
+    }
+    get emailSubmit(){
+      return $('//button[contains (text() , "Send Email")]')
+    }
+    get newWindowMailInbox(){
+      return $('//div[contains (text(), "gcp-estimate@cloudpricingcalculator.appspotmail.com")]')
+    }
+    get mailMessage(){
+      return $('//table[@class="quote"]');
+    }
+    get googleMailFrame(){
+      return $('//iframe[@class = "w-full flex flex-grow min-h-tm-groot-iframe"]')
+    }
+   
+    async secondTasks(){
+      const currentWindowHandle = await browser.getWindowHandle();
+
+      await browser.newWindow('https://etempmail.net/10minutemail', { windowName : "10minutemail", windowFeatures : 'width=1920,height=1080,resizable,scrollbars=yes,status=1' })
+      await this.copyButton.click();
+      const newWindowHandle = await browser.getWindowHandle();
+
+      await browser.switchToWindow(currentWindowHandle);
+
+      await this.firstFrame.waitForDisplayed();
+      await browser.switchToFrame(await this.firstFrame);
+      await this.secondFrame.waitForDisplayed();
+      await browser.switchToFrame(await this.secondFrame);
+
+      await this.emailButton.waitForExist(2000);
+      await this.emailButton.click();
+      await this.formWindow.waitForDisplayed(2000);
+      await this.emailInput.waitForExist(2000);
+      await this.emailInput.setValue("");
+      await browser.keys(["\uE009","v"])
+      await this.emailSubmit.waitForDisplayed(2000);
+      await this.emailSubmit.click();
+
+      await browser.switchToWindow(newWindowHandle);
+
+      await this.newWindowMailInbox.waitForDisplayed(5000);
+      await this.newWindowMailInbox.click();
+
+      await this.googleMailFrame.waitForDisplayed(3000);
+      await browser.switchToFrame(await this.googleMailFrame)
+
+      await this.mailMessage.waitForDisplayed(3000);
+      await expect(this.mailMessage).toHaveTextContaining("USD 1,081.20")
+      
+     }
 }
 
 
 
-module.exports= new Condition();
+module.exports= new ConditionPage();
