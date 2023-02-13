@@ -5,7 +5,8 @@ exports.config = {
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
-    
+    screenshotPath: './test/specs/screenshots',
+
     //
     // ==================
     // Specify Test Files
@@ -215,8 +216,9 @@ exports.config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (test, context) {
-    // },
+    beforeTest: function (test, context) {
+        browser.maximizeWindow()
+    },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -239,8 +241,16 @@ exports.config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+
+    afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+        let screenshotCounter = 0;
+        if (!passed) {
+            screenshotCounter++;
+            const timestamp = new Date().toISOString().replace(/:/g, '-');
+            const filename = `screenshots/${test.title}-${timestamp}-${screenshotCounter}.png`;
+            await browser.saveScreenshot(filename, 'C:/Users/E3RA/Desktop/Epam_Test_2/test/specs/screenshots');
+        }
+    },
 
 
     /**

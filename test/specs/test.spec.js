@@ -5,7 +5,6 @@ describe("Test suite", () => {
 
     it("Hurt Me Plenty", async () => {
         await browser.url('https://cloud.google.com/');
-        await browser.maximizeWindow()
         await condition.googleSearchInput.setValue("Google Cloud Platform Pricing Calculator" + "\uE007");
         await condition.googleCalculatorPage.click();
         await expect(browser).toHaveTitleContaining("Google Cloud Pricing Calculator");
@@ -19,7 +18,6 @@ describe("Test suite", () => {
     it("Hardcore", async () => {
         await condition.secondTasks()
         await browser.switchToParentFrame();
-
     })
 
 });

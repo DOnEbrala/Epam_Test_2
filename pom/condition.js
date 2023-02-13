@@ -22,8 +22,7 @@ class ConditionPage extends Page {
         await browser.switchToFrame(await this.firstFrame);
         await this.secondFrame.waitForDisplayed();
         await browser.switchToFrame(await this.secondFrame);
-    }
-      
+    }  
     get firstNumberInput(){
       return $('#input_92');
     }
@@ -147,7 +146,7 @@ class ConditionPage extends Page {
     async secondTasks(){
       const currentWindowHandle = await browser.getWindowHandle();
 
-      await browser.newWindow('https://etempmail.net/10minutemail', { windowName : "10minutemail", windowFeatures : 'width=1920,height=1080,resizable,scrollbars=yes,status=1' });
+      await browser.newWindow('https://etempmail.net/10minutemail');
       await this.copyButton.click();
       const newWindowHandle = await browser.getWindowHandle();
 
@@ -179,6 +178,7 @@ class ConditionPage extends Page {
       await expect(this.mailMessage).toHaveTextContaining("USD 1,081.20");
       
      }
+     
 }
 
 
