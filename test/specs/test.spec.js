@@ -1,5 +1,5 @@
-const condition = require('../../pom/firstTask');
-const check = require('../../pom/firstTaskCheck');
+const condition = require('../../pom/condition');
+const check = require('../../pom/conditionCheck');
 
 describe("Test suite", () => {
 
@@ -12,12 +12,10 @@ describe("Test suite", () => {
 
         await condition.goToCalculatorFrame();
         await condition.calculatorInputs();
-    });
 
-    it("Hurt Me Plenty Check", async () => {
         await check.checkCondition();
-    })
-
+    });
+    
     it("Hardcore", async () => {
         await condition.secondTasks()
         await browser.switchToParentFrame();

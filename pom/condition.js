@@ -3,33 +3,32 @@ const Page = require('./page');
 
 class ConditionPage extends Page {
     get googleSearchInput(){
-        return $('//input[@class = "devsite-search-field devsite-search-query"]')
+        return $('//input[@class = "devsite-search-field devsite-search-query"]');
     }
     get googleCalculatorPage(){
-        return $('//a[@data-ctorig = "https://cloud.google.com/products/calculator"]')
+        return $('//a[@data-ctorig = "https://cloud.google.com/products/calculator"]');
     }
     get googleCalculatorPageTitle(){
         return $('//h2["Google Cloud Pricing Calculator"]');
     }
     get firstFrame() {
-        return $('#cloud-site > devsite-iframe > iframe');
-      }
-    
+        return $('#cloud-site  iframe');
+    }
     get secondFrame() {
         return $('#myFrame');
-      }
+    }
     async goToCalculatorFrame() {
         await this.firstFrame.waitForDisplayed();
         await browser.switchToFrame(await this.firstFrame);
         await this.secondFrame.waitForDisplayed();
         await browser.switchToFrame(await this.secondFrame);
-      }
+    }
       
     get firstNumberInput(){
-      return $('#input_92')
+      return $('#input_92');
     }
     get seriesDropDownMenuLabel(){
-      return $('#select_value_label_87')
+      return $('#select_value_label_87');
     }
     get seriesDropDownMenuOption(){
       return $('//div[contains (text(), "N1")]');
@@ -38,53 +37,52 @@ class ConditionPage extends Page {
       return $('#select_value_label_88');
     }
     get computerOptionDropDownMenuOption(){
-      return $('//div[contains (text(), "n1-standard-8 (vCPUs: 8, RAM: 30GB")]')
+      return $('//div[contains (text(), "n1-standard-8 (vCPUs: 8, RAM: 30GB")]');
     }
     get checkBoxGpu(){
-      return $('//div[contains (text(), "Add GPUs.")][1]')
+      return $(`//md-checkbox[@ng-disabled = "!listingCtrl.isGpuOptionAvailable('computeServer')"]`);
     }
     get gpuSelectDropDown(){
-      return $('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[14]/div/div[1]/div[1]/md-input-container[1]')
-      
+      return $('//md-select[@placeholder ="GPU type"]');
     }
     get gpuSelectDropDownOption(){
-      return $('//div[contains (text(), "NVIDIA Tesla V100")][1]')
+      return $('//div[contains (text(), "NVIDIA Tesla V100")]');
     }
     get gpuNumberDropDownMenu(){
-      return $('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[14]/div/div[1]/div[1]/md-input-container[2]')
+      return $('//md-select[@placeholder = "Number of GPUs"]');
     }
     get gpuNumberDropDownMenuOption(){
-      return $('/html/body/div[6]/md-select-menu/md-content/md-option[2]/div')
+      return $('//md-option[@ng-disabled="item.value != 0 && item.value < listingCtrl.minGPU"][@value = "1"]');
     }
     get ssdNodesContainerDropDown(){
-      return $('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[15]/div[1]/md-input-container')
+      return $('//md-select[@ng-model = "listingCtrl.computeServer.ssd"]');
     }
     get ssdNodesContainerDropDownOption(){
-      return $('//div[contains(text(), "2x375 GB")]')
+      return $('//div[contains(text(), "2x375 GB")]');
     }
     get locationServerDropDown(){
-      return $('/html/body/md-content/md-card/div/md-card-content[1]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[16]/div[1]/md-input-container')
+      return $('//md-select[@ng-model = "listingCtrl.computeServer.location"]');
     }
     get locationServerDropDownOption(){
-      return $('//*[@id="select_option_230"]')
+      return $('//md-option[@id="select_option_230"]');
     }
     get committedUsageTimeDropDown(){
-      return $('//*[@id="select_132"]')
+      return $('//md-select[@id="select_132"]');
     }
     get committedUsageTimeDropDownOption(){
-      return $('//*[@id="select_option_130"]/div[1]')
+      return $('//md-option[@id = "select_option_130"]');
     }
     get estimateButton(){
-      return $('//*[@id="mainForm"]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[20]/button')
+      return $('//button[@ng-click="listingCtrl.addComputeServer(ComputeEngineForm);"]');
     }
 
     async calculatorInputs(){
-      await this.firstNumberInput.click()
+      await this.firstNumberInput.click();
       await this.firstNumberInput.setValue(4);
       
-      await this.seriesDropDownMenuLabel.click()
-      await this.seriesDropDownMenuOption.waitForDisplayed(2000)
-      await this.seriesDropDownMenuOption.click()
+      await this.seriesDropDownMenuLabel.click();
+      await this.seriesDropDownMenuOption.waitForDisplayed(2000);
+      await this.seriesDropDownMenuOption.click();
       
       await this.computerOptionDropDownMenu.click();
       await this.computerOptionDropDownMenuOption.waitForExist(2000);
@@ -114,43 +112,42 @@ class ConditionPage extends Page {
       await this.committedUsageTimeDropDownOption.waitForDisplayed(2000);
       await this.committedUsageTimeDropDownOption.click();
 
-      // await this.estimateButton.scrollIntoView();
       await this.estimateButton.click();
 
     }
 
     get newMailAdressInput () {
-      return $('//div[@id="email_id"]')
+      return $('//div[@id="email_id"]');
      }
     get copyButton (){
-      return $('//div[@id = "btn_copy"]')
+      return $('//div[@id = "btn_copy"]');
     }
     get emailButton(){
-      return $('/html/body/md-content/md-card/div/md-card-content[2]/md-card/md-card-content/div/div/div/div[3]/button[2]')
+      return $('//button[@id = "Email Estimate"]');
     }
     get formWindow(){
-      return $('body > div.md-dialog-container.ng-scope')
+      return $('body div.md-dialog-container.ng-scope');
     }
     get emailInput(){
-      return $('//label[contains (text(), "Email")]/..//input')
+      return $('//input[@ng-model = "emailQuote.user.email"]');
     }
     get emailSubmit(){
-      return $('//button[contains (text() , "Send Email")]')
+      return $('//button[contains (text() , "Send Email")]');
     }
     get newWindowMailInbox(){
-      return $('//div[contains (text(), "gcp-estimate@cloudpricingcalculator.appspotmail.com")]')
+      return $('//div[contains (text(), "gcp-estimate@cloudpricingcalculator.appspotmail.com")]');
     }
     get mailMessage(){
       return $('//table[@class="quote"]');
     }
     get googleMailFrame(){
-      return $('//iframe[@class = "w-full flex flex-grow min-h-tm-groot-iframe"]')
+      return $('//iframe[@class = "w-full flex flex-grow min-h-tm-groot-iframe"]');
     }
    
     async secondTasks(){
       const currentWindowHandle = await browser.getWindowHandle();
 
-      await browser.newWindow('https://etempmail.net/10minutemail', { windowName : "10minutemail", windowFeatures : 'width=1920,height=1080,resizable,scrollbars=yes,status=1' })
+      await browser.newWindow('https://etempmail.net/10minutemail', { windowName : "10minutemail", windowFeatures : 'width=1920,height=1080,resizable,scrollbars=yes,status=1' });
       await this.copyButton.click();
       const newWindowHandle = await browser.getWindowHandle();
 
@@ -166,24 +163,24 @@ class ConditionPage extends Page {
       await this.formWindow.waitForDisplayed(2000);
       await this.emailInput.waitForExist(2000);
       await this.emailInput.setValue("");
-      await browser.keys(["\uE009","v"])
+      await browser.keys(["\uE009","v"]);
       await this.emailSubmit.waitForDisplayed(2000);
       await this.emailSubmit.click();
 
       await browser.switchToWindow(newWindowHandle);
 
-      await this.newWindowMailInbox.waitForDisplayed(5000);
+      await this.newWindowMailInbox.waitForDisplayed(10000);
       await this.newWindowMailInbox.click();
 
       await this.googleMailFrame.waitForDisplayed(3000);
-      await browser.switchToFrame(await this.googleMailFrame)
+      await browser.switchToFrame(await this.googleMailFrame);
 
       await this.mailMessage.waitForDisplayed(3000);
-      await expect(this.mailMessage).toHaveTextContaining("USD 1,081.20")
+      await expect(this.mailMessage).toHaveTextContaining("USD 1,081.20");
       
      }
 }
 
 
 
-module.exports= new ConditionPage();
+module.exports = new ConditionPage();
