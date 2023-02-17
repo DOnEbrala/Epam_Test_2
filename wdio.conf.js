@@ -136,8 +136,11 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec',['junit',{
-        outputDir: './report'
-    }]
+        outputDir: './report',
+        outputFileFormat: function (option) {
+            return `results-${new Date().getTime()}.xml`;
+        },
+    },],
 ],
 
 
