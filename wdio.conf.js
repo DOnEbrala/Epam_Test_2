@@ -135,7 +135,10 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec',['junit',{
+        outputDir: './report'
+    }]
+],
 
 
     
@@ -243,13 +246,12 @@ exports.config = {
      */
 
     afterTest: async function (test, context, { error, result, duration, passed, retries }) {
-        let screenshotCounter = 0;
         if (!passed) {
-            screenshotCounter++;
-            const timestamp = new Date().toISOString().replace(/:/g, '-');
-            const filename = `screenshots/${test.title}-${timestamp}-${screenshotCounter}.png`;
-            await browser.saveScreenshot(filename, 'C:/Users/E3RA/Desktop/Epam_Test_2/test/specs/screenshots');
+            const currentTime = new Date().toISOString().replace(/:/g, '-');
+            const filename = `screenshots/${test.title}-${currentTime}.png`;
+            await browser.saveScreenshot(filename);
         }
+        
     },
 
 
