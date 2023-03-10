@@ -24,16 +24,16 @@ class ConditionPage extends Page {
         await browser.switchToFrame(await this.secondFrame);
     }  
     get firstNumberInput(){
-      return $('#input_92');
+      return $('#input_93');
     }
     get seriesDropDownMenuLabel(){
-      return $('#select_value_label_87');
+      return $('#select_value_label_88');
     }
     get seriesDropDownMenuOption(){
       return $('//div[contains (text(), "N1")]');
     }
     get computerOptionDropDownMenu(){
-      return $('#select_value_label_88');
+      return $('#select_value_label_89');
     }
     get computerOptionDropDownMenuOption(){
       return $('//div[contains (text(), "n1-standard-8 (vCPUs: 8, RAM: 30GB")]');
@@ -63,13 +63,13 @@ class ConditionPage extends Page {
       return $('//md-select[@ng-model = "listingCtrl.computeServer.location"]');
     }
     get locationServerDropDownOption(){
-      return $('//md-option[@id="select_option_230"]');
+      return $('//md-option[@id="select_option_231"]');
     }
     get committedUsageTimeDropDown(){
-      return $('//md-select[@id="select_132"]');
+      return $('//md-select[@id="select_133"]');
     }
     get committedUsageTimeDropDownOption(){
-      return $('//md-option[@id = "select_option_130"]');
+      return $('//md-option[@id = "select_option_131"]');
     }
     get estimateButton(){
       return $('//button[@ng-click="listingCtrl.addComputeServer(ComputeEngineForm);"]');
@@ -114,72 +114,7 @@ class ConditionPage extends Page {
       await this.estimateButton.click();
 
     }
-
-    get newMailAdressInput () {
-      return $('//div[@id="email_id"]');
-     }
-    get copyButton (){
-      return $('//div[@id = "btn_copy"]');
-    }
-    get emailButton(){
-      return $('//button[@id = "Email Estimate"]');
-    }
-    get formWindow(){
-      return $('body div.md-dialog-container.ng-scope');
-    }
-    get emailInput(){
-      return $('//input[@ng-model = "emailQuote.user.email"]');
-    }
-    get emailSubmit(){
-      return $('//button[contains (text() , "Send Email")]');
-    }
-    get newWindowMailInbox(){
-      return $('//div[contains (text(), "gcp-estimate@cloudpricingcalculator.appspotmail.com")]');
-    }
-    get mailMessage(){
-      return $('//table[@class="quote"]');
-    }
-    get googleMailFrame(){
-      return $('//iframe[@class = "w-full flex flex-grow min-h-tm-groot-iframe"]');
-    }
-   
-    async secondTasks(){
-      const currentWindowHandle = await browser.getWindowHandle();
-
-      await browser.newWindow('https://etempmail.net/10minutemail');
-      await this.copyButton.click();
-      const newWindowHandle = await browser.getWindowHandle();
-
-      await browser.switchToWindow(currentWindowHandle);
-
-      await this.firstFrame.waitForDisplayed();
-      await browser.switchToFrame(await this.firstFrame);
-      await this.secondFrame.waitForDisplayed();
-      await browser.switchToFrame(await this.secondFrame);
-
-      await this.emailButton.waitForExist(2000);
-      await this.emailButton.click();
-      await this.formWindow.waitForDisplayed(2000);
-      await this.emailInput.waitForExist(2000);
-      await this.emailInput.setValue("");
-      await browser.keys(["\uE009","v"]);
-      await this.emailSubmit.waitForDisplayed(2000);
-      await this.emailSubmit.click();
-
-      await browser.switchToWindow(newWindowHandle);
-
-      await this.newWindowMailInbox.waitForDisplayed(10000);
-      await this.newWindowMailInbox.click();
-
-      await this.googleMailFrame.waitForDisplayed(3000);
-      await browser.switchToFrame(await this.googleMailFrame);
-
-      await this.mailMessage.waitForDisplayed(3000);
-      await expect(this.mailMessage).toHaveTextContaining("USD 1,081.20");
-      
-     }
-     
-}
+};
 
 
 

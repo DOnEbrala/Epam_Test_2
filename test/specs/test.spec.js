@@ -1,22 +1,24 @@
-const condition = require('../../pom/condition');
-const check = require('../../pom/conditionCheck');
+const googlePage = require('../../pom/googlePage');
+const googleCheckPage = require('../../pom/googlePageCheck');
+const emailPageTask = require('../../pom/emailPageTask');
 
 describe("Test suite", () => {
 
     it("Hurt Me Plenty", async () => {
         await browser.url('https://cloud.google.com/');
-        await condition.googleSearchInput.setValue("Google Cloud Platform Pricing Calculator" + "\uE007");
-        await condition.googleCalculatorPage.click();
+        await googlePage.googleSearchInput.setValue("Google Cloud Platform Pricing Calculator" + "\uE007");
+        await googlePage.googleCalculatorPage.click();
         await expect(browser).toHaveTitleContaining("Google Cloud Pricing Calculator");
 
-        await condition.goToCalculatorFrame();
-        await condition.calculatorInputs();
+        await googlePage.goToCalculatorFrame();
+        await googlePage.calculatorInputs();
 
-        await check.checkCondition();
+        await googleCheckPage.checkCondition();
     });
     
     it("Hardcore", async () => {
-        await condition.secondTasks()
+
+        await emailPageTask.hardcore();
         await browser.switchToParentFrame();
     })
 
