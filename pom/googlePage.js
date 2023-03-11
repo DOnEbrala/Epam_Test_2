@@ -18,9 +18,9 @@ class ConditionPage extends Page {
         return $('#myFrame');
     }
     async goToCalculatorFrame() {
-        await this.firstFrame.waitForDisplayed();
+        await this.firstFrame.waitForDisplayed(5000);
         await browser.switchToFrame(await this.firstFrame);
-        await this.secondFrame.waitForDisplayed();
+        await this.secondFrame.waitForDisplayed(5000);
         await browser.switchToFrame(await this.secondFrame);
     }  
     get firstNumberInput(){
