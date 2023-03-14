@@ -11,6 +11,9 @@ class ConditionPage extends Page {
     get googleCalculatorPageTitle(){
         return $('//h2["Google Cloud Pricing Calculator"]');
     }
+    get messagePopUp(){
+      return $('#gc-wrapper cloudx-chat');
+    }
     get firstFrame() {
         return $('#cloud-site  iframe');
     }
@@ -18,6 +21,8 @@ class ConditionPage extends Page {
         return $('#myFrame');
     }
     async goToCalculatorFrame() {
+        await this.messagePopUp.shadow$('#container > div.message-container > span.close').waitForDisplayed(2000);
+        await this.messagePopUp.shadow$('#container > div.message-container > span.close').click();
         await this.firstFrame.waitForDisplayed(5000);
         await browser.switchToFrame(await this.firstFrame);
         await this.secondFrame.waitForDisplayed(5000);
