@@ -61,7 +61,8 @@ class EmailPage extends Page {
         await this.emailSubmit.click();
   
         await browser.switchToWindow(newWindowHandle);
-  
+        
+        await browser.pause(5000);
         await this.newWindowMailInbox.waitForDisplayed(10000);
         await this.newWindowMailInbox.click();
   
