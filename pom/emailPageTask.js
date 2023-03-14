@@ -41,7 +41,6 @@ class EmailPage extends Page {
         const currentWindowHandle = await browser.getWindowHandle();
   
         await browser.newWindow('https://etempmail.net/10minutemail');
-        await browser.setWindowSize(1920, 1080);       
         await this.copyButton.click();
         const newWindowHandle = await browser.getWindowHandle();
   
