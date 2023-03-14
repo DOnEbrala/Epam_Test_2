@@ -1,7 +1,7 @@
 const Page = require('./page');
 // const ConditionPage = require('./condition');
 
-class emailPage extends Page {
+class EmailPage extends Page {
     
     get newMailAdressInput () {
         return $('//div[@id="email_id"]');
@@ -37,11 +37,11 @@ class emailPage extends Page {
         return $('//iframe[@class = "w-full flex flex-grow min-h-tm-groot-iframe"]');
       }
       
-    async hardcore(){
+    async emailPageTasks(){
         const currentWindowHandle = await browser.getWindowHandle();
   
         await browser.newWindow('https://etempmail.net/10minutemail');
-
+        await browser.setWindowSize(1920, 1080);       
         await this.copyButton.click();
         const newWindowHandle = await browser.getWindowHandle();
   
@@ -78,4 +78,4 @@ class emailPage extends Page {
 }
 
 
-module.exports = new emailPage(); 
+module.exports = new EmailPage(); 

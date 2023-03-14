@@ -1,6 +1,6 @@
 const googlePage = require('../../pom/googlePage');
 const googleCheckPage = require('../../pom/googlePageCheck');
-const emailPageTask = require('../../pom/emailPageTask');
+const emailPage = require('../../pom/emailPageTask');
 
 describe("Test suite", () => {
 
@@ -18,7 +18,7 @@ describe("Test suite", () => {
     
     it("Hardcore", async () => {
 
-        await emailPageTask.hardcore();
+        await emailPage.emailPageTasks();
         await browser.switchToParentFrame();
     })
 

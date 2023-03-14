@@ -84,7 +84,7 @@ class ConditionPage extends Page {
       await this.seriesDropDownMenuOption.click();
       
       await this.computerOptionDropDownMenu.click();
-      await this.computerOptionDropDownMenuOption.waitForExist(2000);
+      await this.computerOptionDropDownMenuOption.waitForDisplayed(2000);
       await this.computerOptionDropDownMenuOption.click();
 
       await this.checkBoxGpu.click();
