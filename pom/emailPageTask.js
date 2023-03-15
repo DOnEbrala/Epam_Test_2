@@ -44,6 +44,7 @@ class EmailPage extends Page {
         const currentWindowHandle = await browser.getWindowHandle();
   
         await browser.newWindow('https://etempmail.net/10minutemail');
+        await this.copyButton.waitForDisplayed(2000);
         await this.copyButton.click();
         const newWindowHandle = await browser.getWindowHandle();
   
@@ -54,10 +55,10 @@ class EmailPage extends Page {
         await this.secondFrame.waitForDisplayed(3000);
         await browser.switchToFrame(await this.secondFrame);
   
-        await this.emailButton.waitForExist(2000);
+        await this.emailButton.waitForDisplayed(2000);
         await this.emailButton.click();
         await this.formWindow.waitForDisplayed(2000);
-        await this.emailInput.waitForExist(2000);
+        await this.emailInput.waitForDisplayed(2000);
         await this.emailInput.setValue("");
         await browser.keys(["\uE009","v"]);
         await this.emailSubmit.waitForDisplayed(2000);
