@@ -59,9 +59,12 @@ exports.config = {
         //
         browserName: 'chrome',
         acceptInsecureCerts: true,
-        // 'goog:chromeOptions': {
-        //     args: ['disable-infobars', 'disable-popup-blocking', 'disable-notifications']
-        //   },
+        'goog:chromeOptions': { 
+             prefs: {
+            'profile.managed_default_content_settings.popups' : 1,
+            'profile.managed_default_content_settings.notifications' : 1,
+        }
+    }
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs

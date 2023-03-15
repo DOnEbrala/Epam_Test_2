@@ -27,6 +27,9 @@ class EmailPage extends Page {
       get emailSubmit(){
         return $('//button[contains (text() , "Send Email")]');
       }
+      get adCommercialCloseButton(){
+        return $('//div[@id="cookie_close"]');
+      }
       get newWindowMailInbox(){
         return $('//div[contains (text(), "gcp-estimate@cloudpricingcalculator.appspotmail.com")]');
       }
@@ -62,6 +65,8 @@ class EmailPage extends Page {
   
         await browser.switchToWindow(newWindowHandle);
         
+        await this.adCommercialCloseButton.waitForDisplayed(2000);
+        await this.adCommercialCloseButton.click();
         await browser.pause(5000);
         await this.newWindowMailInbox.waitForDisplayed(10000);
         await this.newWindowMailInbox.click();
