@@ -23,7 +23,9 @@
     },
     "scripts": {
         "wdio:chrome": "wdio run wdio.conf.chrome.js",
-        "wdio:firefox": "wdio run wdio.conf.firefox.js"
+        "wdio:firefox": "wdio run wdio.conf.firefox.js",
+        "wdio:specific:chrome": "wdio run wdio.conf.chrome.js --mochaOpts.grep Hurt Me Plenty",
+        "wdio:specific:firefox": "wdio run wdio.conf.chrome.js --mochaOpts.grep Hurt Me Plenty"
     },
     "dependencies": {
         "-": "^0.0.1"
